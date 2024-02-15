@@ -51,15 +51,25 @@ String hql8 = "SELECT a.name FROM Author a WHERE ( SELECT COUNT(b.id) FROM Book 
 ------- CASCADE OPERATIONS -------
 
 CascadeType.REMOVE :
-        CascadeType.REMOVE is a powerful tool in JPA (Java Persistence API) and Hibernate that automates the deletion of child entities when their parent entity is removed from the database.
+CascadeType.REMOVE is a powerful tool in JPA (Java Persistence API) and Hibernate that automates the deletion of child entities when their parent entity is removed from the database.
   
-        In our project, when we delete an author, all their associated books are also deleted.
+In our project, when we delete an author, all their associated books are also deleted.
 
 
 ------- EXPLAINATIONS FOR ANNOTATIONS -------
 
+@Entity Annotation :
+This annotation is used at the class level to mark a class as a persistent entity. This essentially tells the JPA provider that the class represents a table in the database.
+
+@Id Annotation :
+The @Id annotation is used at the field or property level to mark a field as the primary key of an entity class. This field uniquely identifies each instance of the entity within the database table.
+
 @JoinColumn Annotation :
-        An author can write many books, and a book belongs to one author. This is a one-to-many relationship.The Join Column annotation helps map this relationship in this code. It tells to program which column in one table (e.g., author_id in Books) refers to the primary key (usually id) in the other table (Authors). This creates the link between them.
+This is used to specify the mapping of a foreign key column in a database table that is associated with the owning side of a relationship.
+An author can write many books, and a book belongs to one author. This is a one-to-many relationship.The Join Column annotation helps map this relationship in this code. It tells to program which column in one table (e.g., author_id in Books) refers to the primary key (usually id) in the other table (Authors). This creates the link between them.
 
 @GeneratedValue Annotation :
-        When we create new entities, they need unique identifiers (IDs). The GenerateId annotation helps with this. It tells to program how to generate new IDs. IDENTITY: The database assigns a unique ID when the entity is inserted.
+The @GeneratedValue annotation, used in conjunction with @Id, automatically generates values for the primary key field of an entity. When we create new entities, they need unique identifiers (IDs). The GenerateId annotation helps with this. It tells to program how to generate new IDs. IDENTITY: The database assigns a unique ID when the entity is inserted.
+
+@OneToMany Annotation and @ManyToOne Annotation :
+This is used to represent a One-to-Many relationship between Author and Book entities. That means an author can write multiple books and Many books need at least one author.
