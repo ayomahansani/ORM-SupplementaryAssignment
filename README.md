@@ -32,28 +32,34 @@ private static void deleteAnAuthor(Session session) {       // Creating deleteAn
         }
         */
 
-  }
+}
 
-  Question 04:
-  String hql4 = " SELECT AVG(price) FROM Book ";
+Question 04:
+String hql4 = " SELECT AVG(price) FROM Book ";
 
-  Question 05:
-  String hql5 = " SELECT a.id, COUNT(b.id) FROM Author a JOIN Book b ON a.id = b.author.id GROUP BY a.id ";
+Question 05:
+String hql5 = " SELECT a.id, COUNT(b.id) FROM Author a JOIN Book b ON a.id = b.author.id GROUP BY a.id ";
 
-  Question 06:
-  String hql6 = " SELECT b.title FROM Book b JOIN Author a ON b.author.id = a.id WHERE a.country = :country";
+Question 06:
+String hql6 = " SELECT b.title FROM Book b JOIN Author a ON b.author.id = a.id WHERE a.country = :country";
 
-  Question 08:
-  String hql8 = "SELECT a.name FROM Author a WHERE ( SELECT COUNT(b.id) FROM Book b WHERE a.id = b.author.id ) > ( SELECT AVG(countOfBook) FROM ( SELECT COUNT(b.id) AS countOfBook FROM Book b GROUP BY b.author.id ))";
+Question 08:
+String hql8 = "SELECT a.name FROM Author a WHERE ( SELECT COUNT(b.id) FROM Book b WHERE a.id = b.author.id ) > ( SELECT AVG(countOfBook) FROM ( SELECT COUNT(b.id) AS countOfBook FROM Book b GROUP BY b.author.id ))";
 
 
 
-  ------- CASCADE OPERATIONS -------
+------- CASCADE OPERATIONS -------
 
-  CascadeType.REMOVE :
-  
+CascadeType.REMOVE :
         CascadeType.REMOVE is a powerful tool in JPA (Java Persistence API) and Hibernate that automates the deletion of child entities when their parent entity is removed from the database.
   
         In our project, when we delete an author, all their associated books are also deleted.
 
-    
+
+------- EXPLAINATIONS FOR ANNOTATIONS -------
+
+@JoinColumn Annotation :
+        An author can write many books, and a book belongs to one author. This is a one-to-many relationship.The Join Column annotation helps map this relationship in this code. It tells to program which column in one table (e.g., author_id in Books) refers to the primary key (usually id) in the other table (Authors). This creates the link between them.
+
+@GeneratedValue Annotation :
+        When we create new entities, they need unique identifiers (IDs). The GenerateId annotation helps with this. It tells to program how to generate new IDs. IDENTITY: The database assigns a unique ID when the entity is inserted.
