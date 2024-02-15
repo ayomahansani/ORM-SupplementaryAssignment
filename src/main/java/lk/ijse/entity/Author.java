@@ -12,7 +12,7 @@ public class Author {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "author")     //  Pointing to author field in Book entity
+    @OneToMany(mappedBy = "author" , cascade = CascadeType.REMOVE)     //  Pointing to author field in Book entity & using cascade operation
     private List<Book> books;   // One author has many books
 
     public Author() {
