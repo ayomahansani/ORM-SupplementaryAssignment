@@ -1,3 +1,6 @@
+------- ANSWERES TO HQL QUERIES -------
+
+
 Question 01:
 String hql1 = " FROM Book WHERE publicationYear > :year ";
 
@@ -42,5 +45,15 @@ private static void deleteAnAuthor(Session session) {       // Creating deleteAn
 
   Question 08:
   String hql8 = "SELECT a.name FROM Author a WHERE ( SELECT COUNT(b.id) FROM Book b WHERE a.id = b.author.id ) > ( SELECT AVG(countOfBook) FROM ( SELECT COUNT(b.id) AS countOfBook FROM Book b GROUP BY b.author.id ))";
+
+
+
+  ------- CASCADE OPERATIONS -------
+
+  CascadeType.REMOVE :
+  
+        CascadeType.REMOVE is a powerful tool in JPA (Java Persistence API) and Hibernate that automates the deletion of child entities when their parent entity is removed from the database.
+  
+        In our project, when we delete an author, all their associated books are also deleted.
 
     
